@@ -13,9 +13,9 @@ public class PlaneMover : MonoBehaviour {
 	public float respawnDist;
 	private int RandomNum;
 	private int floorNum;
-	// Use this for initialization
+
+
 	void Start () {
-		//obstacle = GameObject.Find ("obstacle1");
 		floorNum = 1;
 		print (transform.position);
 		RandomNum = Random.Range (1, 2);
@@ -24,10 +24,8 @@ public class PlaneMover : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position += Vector3.forward * -speed;
-		//obstacle = GameObject.Find ("obstacle1");
-
 		if (transform.position.z < respawnTrigger) {
-
+			Destroy(child);
 			if (floorNum == 1) {
 				floorNum = 2;
 			} else  {
