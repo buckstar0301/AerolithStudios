@@ -9,6 +9,7 @@ public class PlaneMover : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		print (transform.position);
 	
 	}
 	
@@ -18,7 +19,8 @@ public class PlaneMover : MonoBehaviour {
 		transform.position += Vector3.forward * -speed;
 
 		if (transform.position.z < respawnTrigger) {
-			transform.position -= Vector3.forward * respawnDist;
+			transform.position += Vector3.forward * respawnDist;
+			print ("trigger");
 		}
 
 	

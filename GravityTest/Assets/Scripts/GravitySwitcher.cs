@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GravitySwitcher : MonoBehaviour {
 
+	public Camera MainCam;
+	public Rigidbody player;
 	// Use this for initialization
 	void Start () {
 	
@@ -13,7 +15,12 @@ public class GravitySwitcher : MonoBehaviour {
 
 		if (Input.GetKeyDown ("space")) {
 			Physics.gravity *= -1;
+
+			//player.transform.Rotate (0,0, 180);
+			//MainCam.transform.Rotate (0, 0, 180);
 		}
+
+
 	
 	}
 }
