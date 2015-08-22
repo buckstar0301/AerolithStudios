@@ -4,27 +4,36 @@ using System.Collections;
 public class playerController : MonoBehaviour {
 
 	public float rotationSpeed;
+	public GravitySwitcher gravSwitcher;
 	
 	Vector3 gravDown;
 	Quaternion target;
-	public float timeStartedLerping;
+	private float timeStartedLerping;
 	public float distanceToMove;
 	private int direction;
 	public Rigidbody rb;
 	public bool isLerping;
-	public Vector3 startPos;
-	public Vector3 endPos;
+	Vector3 startPos;
+	Vector3 endPos;
 	public float timeTakenDuringLerp = 4f;
+	float YposLast;
 
 
 	// Use this for initialization
 	void Start () {
 		gravDown = Physics.gravity.normalized;
 		rb = GetComponent<Rigidbody> ();
+		endPos = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		YposLast = transform.position.y;
+
+		if (isLerping == false) {
+			transform.position = new Vector3 (endPos.x, YposLast, endPos.z);
+		}
 
 		if (Physics.gravity.normalized != gravDown) {
 			target = Quaternion.Euler (0, 0, 180);
@@ -34,21 +43,18 @@ public class playerController : MonoBehaviour {
 
 		transform.rotation = Quaternion.Slerp (transform.rotation, target, Time.deltaTime * rotationSpeed);
 
-		if (Input.GetKey ("left") && (transform.position.x > -2.5) && isLerping == false) {
-			direction = 0;
-			startLerping();
+		if (gravSwitcher.isGrounded == true) {
+			if (Input.GetKey ("left") && (transform.position.x > -2.5) && isLerping == false) {
+				direction = 0;
+				startLerping ();
 
+			}
+			if (Input.GetKey ("right") && (transform.position.x < 2.5) && isLerping == false) {
+
+				direction = 1;
+				startLerping ();
+			}
 		}
-		if (Input.GetKey ("right") && (transform.position.x < 2.5)  && isLerping == false) {
-
-			direction = 1;
-			startLerping();
-		}
-
-
-
-
-
 	
 	}
 
@@ -68,18 +74,17 @@ public class playerController : MonoBehaviour {
 
 	void FixedUpdate() {
 		if(isLerping)
+		{
+			float timeSinceStarted = Time.time - timeStartedLerping;
+			float percentageComplete = timeSinceStarted / timeTakenDuringLerp;
+
+			Vector3 lerPos = Vector3.Lerp ( startPos, endPos, percentageComplete);
+			transform.position = new Vector3 (lerPos.x, YposLast, lerPos.z);
+
+			if(percentageComplete >= 1.0f)
 			{
-				float timeSinceStarted = Time.time - timeStartedLerping;
-				float percentageComplete = timeSinceStarted / timeTakenDuringLerp;
-
-				transform.position = Vector3.Lerp ( startPos, endPos, percentageComplete);
-
-				if(percentageComplete >= 1.0f)
-				{
-					isLerping = false;
-				}
-
-			
+				isLerping = false;
+			}
 		}
-}
-			                                   }			                                
+	}
+}			                                
