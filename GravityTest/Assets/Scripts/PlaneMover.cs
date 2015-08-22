@@ -55,17 +55,17 @@ public class PlaneMover : MonoBehaviour {
 	}
 
 	void Generation () {
-		RandomNum = Random.Range (1, 6);
-		RandomZ = Random.Range (1,2);
+		RandomNum = 1;
+		RandomZ = Random.Range (5,20);
 		Destroy(child);
 		parent = GameObject.Find("Bottom " + floorNum);
 		switch (RandomNum) {
 		case 1 :
-			child = Instantiate(obstacle1/*, new Vector3(-2.5f, 1, RandomZ), Quaternion.identity*/);
-			print ("Creating Obstacle 1");
+			child = Instantiate(obstacle1, new Vector3(-2.5f, 1, RandomZ), obstacle1.transform.rotation) as GameObject;
+			print ("Creating Obstacle 1, my z is" + child.transform.position.z);
 			break;
 		case 2 :
-			child = Instantiate(obstacle2);
+			child = Instantiate(obstacle2, new Vector3(-3.2, 1, RandomZ), obstacle1.transform.rotation) as GameObject;
 			print ("Creating Obstacle 2");
 			break;
 		case 3 :
