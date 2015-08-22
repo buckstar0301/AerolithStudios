@@ -5,7 +5,7 @@ using System.Collections;
 
 public class Tokens : MonoBehaviour {
 	public Text countText;
-	public Text winText;
+//	public Text winText;
 
 	private int count;
 
@@ -15,7 +15,7 @@ public class Tokens : MonoBehaviour {
 		SetCountText ();
 		count = 0;
 		SetCountText ();
-		winText.text = "";
+//		winText.text = "";
 	
 	}
 	
@@ -23,7 +23,7 @@ public class Tokens : MonoBehaviour {
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.gameObject.CompareTag ("Player")) {
-			other.gameObject.SetActive (false);
+			//other.gameObject.SetActive (false);
 			count = count + 1;
 			print("Collided");
 			SetCountText ();

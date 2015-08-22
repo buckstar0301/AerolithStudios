@@ -28,7 +28,6 @@ public class PlaneMover : MonoBehaviour {
 
 	void Start () {
 		floorNum = 1;
-		print (transform.position);
 		RandomNum = Random.Range (1, 6);
 	}
 	
@@ -46,7 +45,6 @@ public class PlaneMover : MonoBehaviour {
 				floorNum = 1;
 			}
 			transform.position += Vector3.forward * respawnDist;
-			print ("trigger" + RandomNum);
 		}
 
 	
@@ -62,30 +60,30 @@ public class PlaneMover : MonoBehaviour {
 		switch (RandomNum) {
 		case 1 :
 			child = Instantiate(obstacle1, new Vector3(-2.5f, 1, RandomZ), obstacle1.transform.rotation) as GameObject;
-			print ("Creating Obstacle 1, my z is" + child.transform.position.z);
+//			print ("Creating Obstacle 1, my z is" + child.transform.position.z);
 			break;
 		case 2 :
 			child = Instantiate(obstacle2, new Vector3(-3.2f, 1, RandomZ), obstacle1.transform.rotation) as GameObject;
-			print ("Creating Obstacle 2");
+//			print ("Creating Obstacle 2");
 			break;
 		case 3 :
 			child = Instantiate(obstacle3);
-			print("Creating Obstacle 3");
+//			print("Creating Obstacle 3");
 			break;
 		case 4 :
 			child = Instantiate(obstacle4);
-			print ("Creating Obstacle 4");
+//			print ("Creating Obstacle 4");
 			break;
 		case 5 :
 			child = Instantiate(obstacle5);
-			print ("Creating Obstacle 5");
+//			print ("Creating Obstacle 5");
 			break;
 		case 6 :
 			child = Instantiate(obstacle6);
-			print ("Creating Obstacle 6");
+//			print ("Creating Obstacle 6");
 			break;
 		default :
-			print ("There is somethig wrong with the switch/ randomNum");
+//			print ("There is somethig wrong with the switch/ randomNum");
 			break;
 		
 		}
