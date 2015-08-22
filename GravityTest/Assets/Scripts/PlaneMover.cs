@@ -4,8 +4,18 @@ using System.Collections;
 
 public class PlaneMover : MonoBehaviour {
 
+	/* Prefabs*/
+
+	public GameObject obstacle1;
+	public GameObject obstacle2;
+	public GameObject obstacle3;
+	public GameObject obstacle4;
+	public GameObject obstacle5;
+	public GameObject obstacle6;
+
+	/* End Prefabs*/
+
 	public GameObject parent;
-	public GameObject obstacle;
 	public GameObject child;
 	private int obstacleNum;
 	public float speed;
@@ -25,21 +35,58 @@ public class PlaneMover : MonoBehaviour {
 	void Update () {
 		transform.position += Vector3.forward * -speed;
 		if (transform.position.z < respawnTrigger) {
-			Destroy(child);
+			Generation();
 			if (floorNum == 1) {
 				floorNum = 2;
 			} else  {
 				floorNum = 1;
 			}
 			transform.position += Vector3.forward * respawnDist;
-			parent = GameObject.Find("Bottom " + floorNum);
-			child = Instantiate(obstacle);
-			child.transform.parent = parent.transform;
-
-
 			print ("trigger" + RandomNum);
 		}
 
 	
+
+	
+	}
+
+	void Generation () {
+		Destroy(child);
+		parent = GameObject.Find("Bottom " + floorNum);
+		switch (RandomNum) {
+		case 1 :
+			child = Instantiate(obstacle1);
+			print ("Creating Obstacle 1");
+			break;
+		case 2 :
+			child = Instantiate(obstacle2);
+			print ("Creating Obstacle 2");
+			break;
+		case 3 :
+			child = Instantiate(obstacle3);
+			print("Creating Obstacle 3");
+			break;
+		case 4 :
+			child = Instantiate(obstacle4);
+			print ("Creating Obstacle 4");
+			break;
+		case 5 :
+			child = Instantiate(obstacle5);
+			print ("Creating Obstacle 5");
+			break;
+		case 6 :
+			child = Instantiate(obstacle6);
+			print ("Creating Obstacle 6");
+			break;
+		default :
+			print ("There is somethig wrong with the switch/ randomNum");
+			break;
+		
+		}
+
+
+		//child = Instantiate(obstacle1);
+		child.transform.parent = parent.transform;
+
 	}
 }
