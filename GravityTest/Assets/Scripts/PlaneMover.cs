@@ -65,7 +65,7 @@ public class PlaneMover : MonoBehaviour {
 			print ("Creating Obstacle 1, my z is" + child.transform.position.z);
 			break;
 		case 2 :
-			child = Instantiate(obstacle2, new Vector3(-3.2, 1, RandomZ), obstacle1.transform.rotation) as GameObject;
+			child = Instantiate(obstacle2, new Vector3(-3.2f, 1, RandomZ), obstacle1.transform.rotation) as GameObject;
 			print ("Creating Obstacle 2");
 			break;
 		case 3 :
