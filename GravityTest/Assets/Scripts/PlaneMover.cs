@@ -14,7 +14,8 @@ public class PlaneMover : MonoBehaviour {
 	public GameObject obstacle6;
 
 	/* End Prefabs*/
-
+	private float RandomZ;
+	public bool enableGeneration;
 	public GameObject parent;
 	public GameObject child;
 	private int obstacleNum;
@@ -28,14 +29,17 @@ public class PlaneMover : MonoBehaviour {
 	void Start () {
 		floorNum = 1;
 		print (transform.position);
-		RandomNum = Random.Range (1, 2);
+		RandomNum = Random.Range (1, 6);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.position += Vector3.forward * -speed;
 		if (transform.position.z < respawnTrigger) {
+
+			if (enableGeneration == true)
 			Generation();
+
 			if (floorNum == 1) {
 				floorNum = 2;
 			} else  {
@@ -51,11 +55,13 @@ public class PlaneMover : MonoBehaviour {
 	}
 
 	void Generation () {
+		RandomNum = Random.Range (1, 6);
+		RandomZ = Random.Range (1,2);
 		Destroy(child);
 		parent = GameObject.Find("Bottom " + floorNum);
 		switch (RandomNum) {
 		case 1 :
-			child = Instantiate(obstacle1);
+			child = Instantiate(obstacle1/*, new Vector3(-2.5f, 1, RandomZ), Quaternion.identity*/);
 			print ("Creating Obstacle 1");
 			break;
 		case 2 :
