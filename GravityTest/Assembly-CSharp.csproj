@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\GravitySwitcher.cs" />
      <Compile Include="Assets\Scripts\PlaneMover.cs" />
+     <Compile Include="Assets\Scripts\Tokens.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
